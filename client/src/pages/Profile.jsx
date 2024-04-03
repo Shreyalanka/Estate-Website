@@ -101,7 +101,5 @@ export default function Profile() {
         <span className="text-red-700 cursor-pointer">Sign Out</span>
       </div>
     </div>
-  )
-  };
-
-
+  );
+}        
