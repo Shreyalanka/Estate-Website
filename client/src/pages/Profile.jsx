@@ -26,31 +26,49 @@ export default function Profile() {
   // request.resource.size < 2*1024*1024 &&
   // request.resource.contentType.matches('image/.*')
 
+  
   useEffect(() => {
-    if(file){
-      handleFileUpload(file);
+    // Handle file upload only if 'file' exists
+    if (file) {
+      const handleFileUpload = async () => {
+        try {
+          const storage = getStorage(app);
+          const fileName = new Date().getTime() + file.name;
+          const storageRef = ref(storage, fileName);
+  
+          // Use uploadBytesResumable for efficient uploads
+          const uploadTask = uploadBytesResumable(storageRef, file);
+  
+          // Update progress and handle errors/completion efficiently
+          uploadTask.on('state_changed',
+            (snapshot) => {
+              const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              setFilePerc(Math.round(progress));
+            },
+            (error) => {
+              console.error('Error uploading file:', error);
+              setFileUploadError(true); // Or handle error differently (e.g., display user-friendly message)
+            },
+            async () => {
+              try {
+                const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                setFormData({ ...formData, avatar: downloadURL });
+              } catch (error) {
+                console.error('Error getting download URL:', error);
+                // Handle error appropriately (e.g., display message)
+              }
+            }
+          );
+        } catch (error) {
+          console.error('Error in file upload process:', error);
+          // Handle general error (e.g., display message)
+        }
+      };
+  
+      handleFileUpload();
     }
-  },[file]);
-
-  const handleFileUpload = (file) => {
-    const storage = getStorage(app);
-    const fileName = new Date().getTime() + file.name;
-    const storageRef = ref(storage, fileName);
-    const uploadTask = uploadBytesResumable(storageRef, file);
-
-    uploadTask.on('state_changed',
-      (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setFilePerc(Math.round(progress));
-      });
-      (error) => {
-        setFileUploadError(true); 
-      };
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => setFormData({ ...formData, avatar: downloadURL }));
-        };
-      };
+  }, [file]); // Dependency array ensures effect runs only when 'file' changes
+  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
