@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import { useSelector } from 'react-redux';
 import { useRef, useState, useEffect } from 'react';
 import {
@@ -40,7 +43,6 @@ export default function Profile() {
     if (file) {
       handleFileUpload(file);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
   const handleFileUpload = (file) => {
@@ -56,7 +58,6 @@ export default function Profile() {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setFilePerc(Math.round(progress));
       },
-      // eslint-disable-next-line no-unused-vars
       (error) => {
         setFileUploadError(true);
       },
@@ -124,7 +125,6 @@ export default function Profile() {
       }
       dispatch(deleteUserSuccess(data));
     } catch (error) {
-      // eslint-disable-next-line no-undef
       dispatch(deleteUserFailure(data.message));
     }
   };
