@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { FaSearch } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -22,6 +21,7 @@ export default function Header() {
     if (searchTermFromUrl) {
       setSearchTerm(searchTermFromUrl);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
   
   return (
