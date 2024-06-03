@@ -220,7 +220,7 @@ export default function Search() {
               className='border rounded-lg p-3'
             >
               <option value='regularPrice_desc'>Price high to low</option>
-              <option value='regularPrice_asc'>Price low to hight</option>
+              <option value='regularPrice_asc'>Price low to high</option>
               <option value='createdAt_desc'>Latest</option>
               <option value='createdAt_asc'>Oldest</option>
             </select>
@@ -253,7 +253,7 @@ export default function Search() {
           {showMore && (
             <button
               onClick={onShowMoreClick}
-              className='text-green-700 hover:underline p-7 text-center w-full'
+              className='text-green-900 hover:underline p-7 text-center w-full'
             >
               Show more
             </button>

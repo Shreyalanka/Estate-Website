@@ -96,7 +96,7 @@ export default function Listing() {
               {listing.type === 'rent' && ' / month'}
             </p>
             <p className='flex items-center mt-6 gap-2 text-stone-600  text-sm'>
-              <FaMapMarkerAlt className='text-green-700' />
+              <FaMapMarkerAlt className='text-green-900' />
               {listing.address}
             </p>
             <div className='flex gap-4'>

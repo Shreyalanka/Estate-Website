@@ -188,7 +188,7 @@ export default function Profile() {
           ) : filePerc > 0 && filePerc < 100 ? (
             <span className='text-stone-700'>{`Uploading ${filePerc}%`}</span>
           ) : filePerc === 100 ? (
-            <span className='text-green-700'>Image successfully uploaded!</span>
+            <span className='text-green-900'>Image successfully uploaded!</span>
           ) : (
             ''
           )}
@@ -223,7 +223,7 @@ export default function Profile() {
           {loading ? 'Loading...' : 'Update'}
         </button>
         <Link
-          className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'
+          className='bg-green-900 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'
           to={'/create-listing'}
         >
           Create Listing
@@ -236,19 +236,19 @@ export default function Profile() {
         >
           Delete account
         </span>
-        <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>
+        <span onClick={handleSignOut} className='text-red-900 cursor-pointer'>
           Sign out
         </span>
       </div>
 
-      <p className='text-red-700 mt-5'>{error ? error : ''}</p>
-      <p className='text-green-700 mt-5'>
+      <p className='text-red-900 mt-5'>{error ? error : ''}</p>
+      <p className='text-green-900 mt-5'>
         {updateSuccess ? 'User is updated successfully!' : ''}
       </p>
-      <button onClick={handleShowListings} className='text-green-700 w-full'>
+      <button onClick={handleShowListings} className='text-green-900 w-full'>
         Show Listings
       </button>
-      <p className='text-red-700 mt-5'>
+      <p className='text-red-900 mt-5'>
         {showListingsError ? 'Error showing listings' : ''}
       </p>
 
@@ -279,12 +279,12 @@ export default function Profile() {
               <div className='flex flex-col item-center'>
                 <button
                   onClick={() => handleListingDelete(listing._id)}
-                  className='text-red-700 uppercase'
+                  className='text-red-900 uppercase'
                 >
                   Delete
                 </button>
                 <Link to={`/update-listing/${listing._id}`}>
-                  <button className='text-green-700 uppercase'>Edit</button>
+                  <button className='text-green-900 uppercase'>Edit</button>
                 </Link>
               </div>
             </div>
